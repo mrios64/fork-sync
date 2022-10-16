@@ -8,7 +8,7 @@ const MyOctokit = Octokit.plugin(retry);
 
 async function run() {
   let owner = core.getInput('owner', { required: false }) || context.repo.owner;
-  let repo = context.repo.repo
+  const repo = context.repo.repo
   const base = core.getInput('base', { required: false });
   const head = core.getInput('head', { required: false });
   const mergeMethod = core.getInput('merge_method', { required: false });
@@ -35,7 +35,6 @@ async function run() {
 
   if(r && r.data && r.data.parent) {
     owner = r.data.parent.owner.login || owner
-    repo = r.data.parent.name || repo
   }
 
   try {
